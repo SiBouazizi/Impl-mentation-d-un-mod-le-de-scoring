@@ -90,8 +90,8 @@ SK_ID_CURR= st.sidebar.selectbox("Client ID",data['SK_ID_CURR'].unique() )
 
 if SK_ID_CURR:
     prediction= model.predict_proba(np.array(data.loc[data['SK_ID_CURR']== SK_ID_CURR,colonne]).astype(np.float64))
-    st.success('La probabilité que le client fait défaut dans le paiement de son crédit est {}'.format(prediction[0][0]))
-    if prediction[0][0] > 0.5:
+    st.success('La probabilité que le client fait défaut dans le paiement de son crédit est {}'.format(1-prediction[0][0]))
+    if (1-prediction[0][0]) > 0.5:
             st.success(" Donc l'attribution de ce crédit est risqué")
     else:
             st.success("Donc l'attribution de ce crédit est sûre")
